@@ -1,0 +1,20 @@
+{
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "radik",
+      "email": "kam2r@mail.ru"
+    }
+  ],
+  "require": {
+    "php": "^8.2.0",
+    "ext-http": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "domain/"
+    }
+  }
+}
