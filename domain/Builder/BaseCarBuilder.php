@@ -28,7 +28,6 @@ abstract class BaseCarBuilder
         $baseCar->setCarType($this->getCarTypeFromDto());
         $baseCar->setBrand($this->dto->getBrand());
         $baseCar->setPhotoFileName($this->dto->getPhotoFileName());
-        
 
         return $baseCar;
     }
