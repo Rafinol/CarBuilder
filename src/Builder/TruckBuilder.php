@@ -14,6 +14,7 @@ class TruckBuilder extends BaseCarBuilder
     {
         $this->validate();
 
+        /** @var $truck Truck */
         $truck = $this->createBaseCar(new Truck());
         $chunkBodyWhl = explode('x', $this->dto->getBodyWhl());
         $truck->setBodyLength((float)($chunkBodyWhl[0] ?? 0));

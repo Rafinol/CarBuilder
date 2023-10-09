@@ -14,6 +14,7 @@ class SpecMachineBuilder extends BaseCarBuilder
     {
         $this->validate();
 
+        /** @var $specMachine SpecMachine */
         $specMachine = $this->createBaseCar(new SpecMachine());
         $specMachine->setExtra($this->dto->getExtra());
 

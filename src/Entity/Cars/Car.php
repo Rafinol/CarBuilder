@@ -12,6 +12,7 @@ final class Car extends BaseCar
         $this->passengerSeatsCount = $passengerSeatsCount;
     }
 
+    /** @psalm-suppress UnusedMethod */
     public function getPassengerSeatsCount(): int
     {
         return $this->passengerSeatsCount;

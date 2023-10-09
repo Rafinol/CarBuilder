@@ -3,6 +3,7 @@
 namespace App\Builder;
 
 use App\Dto\CarDto;
+use App\Entity\Cars\BaseCar;
 use App\Entity\Cars\Car;
 use App\Entity\Cars\CarType;
 use App\Entity\Cars\SpecMachine;
@@ -18,7 +19,7 @@ abstract class BaseCarBuilder
     /**
      * @throws WrongCarBuildParametersException
      */
-    protected function createBaseCar(Car|Truck|SpecMachine $baseCar): Car|Truck|SpecMachine
+    protected function createBaseCar(BaseCar $baseCar): BaseCar
     {
         $baseCar->setCarrying((float)$this->dto->getCarrying());
         $baseCar->setCarType($this->getCarTypeFromDto());

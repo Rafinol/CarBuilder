@@ -20,16 +20,19 @@ abstract class BaseCar
         return (new SplFileInfo($this->photoFileName))->getExtension();
     }
 
+    /** @psalm-suppress UnusedMethod */
     public function getBrand(): string
     {
         return $this->brand;
     }
 
+    /** @psalm-suppress UnusedMethod */
     public function getCarType(): CarType
     {
         return $this->carType;
     }
 
+    /** @psalm-suppress UnusedMethod */
     public function getCarrying(): string
     {
         return $this->carrying;

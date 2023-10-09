@@ -12,6 +12,7 @@ final class SpecMachine extends BaseCar
         $this->extra = $extra;
     }
 
+    /** @psalm-suppress UnusedMethod */
     public function getExtra(): string
     {
         return $this->extra;

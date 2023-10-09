@@ -14,6 +14,7 @@ class CarBuilder extends BaseCarBuilder
     {
         $this->validate();
 
+        /** @var $car Car */
         $car = $this->createBaseCar(new Car());
         $car->setPassengerSeatsCount((int)$this->dto->getPassengerSeatsCount());
 
