@@ -12,14 +12,10 @@ class TruckBuilder extends BaseCarBuilder
      */
     public function run(): Truck
     {
-        $truck = $this->create();
+        $this->validate();
 
-        if (!$this->isValidBodyWhl()) {
-            throw new WrongCarBuildParametersException();
-        }
-
+        $truck = $this->createBaseCar(new Truck());
         $chunkBodyWhl = explode('x', $this->dto->getBodyWhl());
-
         $truck->setBodyLength((float)($chunkBodyWhl[0] ?? 0));
         $truck->setBodyWidth((float)($chunkBodyWhl[1] ?? 0));
         $truck->setBodyHeight((float)($chunkBodyWhl[2] ?? 0));
@@ -27,12 +23,12 @@ class TruckBuilder extends BaseCarBuilder
         return $truck;
     }
 
-    /**
-     * @throws WrongCarBuildParametersException
-     */
-    private function create(): Truck
+    protected function validate(): void
     {
-        return $this->createBaseCar(new Truck());
+        parent::validate();
+        if (!$this->isValidBodyWhl()) {
+            throw new WrongCarBuildParametersException();
+        }
     }
 
     private function isValidBodyWhl(): bool

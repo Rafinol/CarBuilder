@@ -8,7 +8,6 @@ use App\Entity\Cars\CarType;
 use App\Entity\Cars\SpecMachine;
 use App\Entity\Cars\Truck;
 use App\Exception\WrongCarBuildParametersException;
-use DomainException;
 
 abstract class BaseCarBuilder
 {
@@ -21,9 +20,6 @@ abstract class BaseCarBuilder
      */
     protected function createBaseCar(Car|Truck|SpecMachine $baseCar): Car|Truck|SpecMachine
     {
-        if (!is_numeric($this->dto->getCarrying())) {
-            throw new WrongCarBuildParametersException();
-        }
         $baseCar->setCarrying((float)$this->dto->getCarrying());
         $baseCar->setCarType($this->getCarTypeFromDto());
         $baseCar->setBrand($this->dto->getBrand());
@@ -35,7 +31,7 @@ abstract class BaseCarBuilder
     /**
      * @throws WrongCarBuildParametersException
      */
-    public function getCarTypeFromDto(): CarType
+    private function getCarTypeFromDto(): CarType
     {
         return match ($this->dto->getCarType()) {
             'car' => CarType::car,
@@ -43,5 +39,20 @@ abstract class BaseCarBuilder
             'specMachine' => CarType::specMachine,
             default => throw new WrongCarBuildParametersException(),
         };
+    }
+
+    /**
+     * @throws WrongCarBuildParametersException
+     */
+    protected function validate(): void
+    {
+        $dto = $this->dto;
+
+        if (empty($dto->getCarrying()) ||
+            !is_numeric($dto->getCarrying()) ||
+            empty($dto->getBrand()) ||
+            empty($dto->getPhotoFileName())) {
+            throw new WrongCarBuildParametersException();
+        }
     }
 }

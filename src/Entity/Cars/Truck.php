@@ -8,9 +8,10 @@ final class Truck extends BaseCar
     private float $bodyWidth;
     private float $bodyHeight;
 
+    /** @psalm-suppress UnusedMethod */
     public function getBodyVolume(): float
     {
-        return $this->bodyLength * $this->bodyHeight * $this->bodyWidth;
+        return number_format($this->bodyLength * $this->bodyHeight * $this->bodyWidth, 2);
     }
 
     public function setBodyLength(float $bodyLength): void

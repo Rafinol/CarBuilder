@@ -12,17 +12,19 @@ class SpecMachineBuilder extends BaseCarBuilder
      */
     public function run(): SpecMachine
     {
-        $specMachine = $this->create();
+        $this->validate();
+
+        $specMachine = $this->createBaseCar(new SpecMachine());
         $specMachine->setExtra($this->dto->getExtra());
 
         return $specMachine;
     }
 
-    /**
-     * @throws WrongCarBuildParametersException
-     */
-    private function create(): SpecMachine
+    protected function validate(): void
     {
-        return $this->createBaseCar(new SpecMachine());
+        parent::validate();
+        if (empty($this->dto->getExtra())) {
+            throw new WrongCarBuildParametersException();
+        }
     }
 }
